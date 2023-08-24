@@ -24,8 +24,8 @@ const USER_DISCONNECTED = { message:"User disconnected", code:6000 }
 const METADATA = {
   name: 'Give-Credit',
   description: 'Donations in XLM',
-  url: 'https://givecredit.cfce.io',
-  icons: ['https://givecredit.cfce.io/logo.png']
+  url: 'https://givecredit.vercel.app',
+  icons: ['https://givecredit.vercel.app/logo.png']
 };
 
 //const CHAIN_ID = process.env.NEXT_PUBLIC_STELLAR_NETWORK=='mainnet' ? 'stellar:pubnet' : 'stellar:testnet'

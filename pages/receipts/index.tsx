@@ -3,9 +3,10 @@ import Page from 'components/Page'
 import Card from 'components/Card'
 import Divider from 'components/Divider'
 import TextRow from 'components/TextRow'
-//import Session from 'utils/session'
+import BackButton from 'components/BackButton'
 import { getNFTsByAccount } from 'utils/registry'
 import { getCookie } from 'cookies-next'
+//import Session from 'utils/session'
 
 export async function getServerSideProps({ req, res, query }){
   let { wallet } = query
@@ -26,6 +27,7 @@ export default function Receipts(props) {
   if (!wallet) {
     return (
       <Page>
+        <BackButton />
         <div className="flex flex-col items-center w-full">
           <p>Wallet not connected</p>
         </div>
@@ -36,6 +38,7 @@ export default function Receipts(props) {
   if (!NFTs.length) {
     return (
       <Page>
+        <BackButton />
         <div className="flex flex-col items-center w-full">
           <p>No Receitps found</p>
         </div>
@@ -45,6 +48,7 @@ export default function Receipts(props) {
 
   return (
     <Page>
+      <BackButton />
       <h1 className="text-center text-4xl mb-6">Your Receipts</h1>
       {NFTs.map((item) => {
         const impactUrl = item.initiative?.id ? '/impact/'+item.initiative?.id : null
@@ -72,7 +76,6 @@ export default function Receipts(props) {
                   label={'Donation Value'}
                   className="px-6 py-3 mb-3"
                 />
-                {/*<h2 className="ml-6 text-xl">Thank you for your donation</h2>*/}
               </div>
             </>
           </Card>

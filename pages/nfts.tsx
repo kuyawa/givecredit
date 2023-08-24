@@ -1,44 +1,31 @@
-//import { useRouter } from 'next/router'
-//import { useSelector } from 'react-redux'
 import Image from 'next/image'
 import Link from 'next/link'
 import Page from 'components/Page'
 import Card from 'components/Card'
-//import Divider from 'components/Divider'
 import BackButton from 'components/BackButton'
-//import Spinner from 'components/Spinner'
-//import { getNFTArray } from 'redux/nft/selectors'
-//import useFetchNFTs from 'utils/useFetchNFTs'
-//import { getAccountNFTs } from 'libs/server/getAccountNFTs'
 import { getNFTsByAccount } from 'utils/registry'
 import { getCookie } from 'cookies-next'
 
 export async function getServerSideProps(context) {
-  const { req, res, query } = context;
+  const { req, res, query } = context
   //console.log({ context })
-  //console.log('Cookies', req.cookies);
-  let { wallet } = query;
+  //console.log('Cookies', req.cookies)
+  let { wallet } = query
   if (!wallet) {
     //wallet = context.cookies?.wallet||null
-    wallet = getCookie('wallet', { req, res }) ?? null; // check cookies just in case
+    wallet = getCookie('wallet', { req, res }) ?? null // check cookies just in case
   }
-  console.log('Wallet:', wallet);
+  console.log('Wallet:', wallet)
   const NFTs = await getNFTsByAccount(wallet) || []
   //console.log({ NFTs })
   return {
     props: { wallet, NFTs }
-  };
+  }
 }
 
 export default function ViewNFTs(props) {
-  const { wallet, NFTs } = props;
-  //const router = useRouter();
-  //const walletID = Array.isArray(wallet) ? wallet[0] : wallet;
-  //const NFTs = useSelector((state) => getNFTArray(state, walletID));
-  //const { isLoading } = useFetchNFTs(walletID);
+  const { wallet, NFTs } = props
   const gateway = 'https://ipfs.io/ipfs/'
-  //const isLoading = false;
-  //console.log('select', { NFTs });
   const defaultImage = '/hands.jpg'
 
   if (!wallet) {
@@ -56,21 +43,20 @@ export default function ViewNFTs(props) {
 
   if (NFTs?.length == 0) {
     return (
-      <>
-        <Page>
-          <BackButton />
-          <div className="px-6">
-            <div className="flex flex-col items-center w-full">
-              <p>No NFTs found</p>
-            </div>
+      <Page>
+        <BackButton />
+        <div className="px-6">
+          <div className="flex flex-col items-center w-full">
+            <p>No NFTs found</p>
           </div>
-        </Page>
-      </>
-    );
+        </div>
+      </Page>
+    )
   }
 
   return (
     <Page>
+      <BackButton />
       <h1 className="text-center text-4xl mb-6">Your NFTs</h1>
       {NFTs.map((item) => {
         //let nftImage = defaultImage
@@ -105,5 +91,5 @@ export default function ViewNFTs(props) {
         )})}
       <h1 className="text-center text-xl mb-6">You have received {NFTs?.length || 0} NFT{NFTs?.length==1 ? '' : 's'}</h1>
     </Page>
-  );
+  )
 }

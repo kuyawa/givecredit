@@ -79,6 +79,7 @@ export default async function Mint(req: NextApiRequest, res: NextApiResponse) {
     const initiative = await getInitiativeByTag(tag)
     const initiativeId = initiative?.id || ''
     const initiativeName = initiative?.title || 'Direct Donation'
+    console.log('INITIATIVE', initiative)
 
     // Get XLM/USD rate
     const usdRate = await getRates('XLM')
@@ -94,6 +95,20 @@ export default async function Mint(req: NextApiRequest, res: NextApiResponse) {
       amountUSD = '0'
       coinCode = opInfo.asset_code
       coinIssuer = opInfo.asset_issuer
+    }
+
+    let offsetVal = 0
+    let offsetTxt = '0 Tons'
+    console.log('CREDIT', initiative.credits)
+    if(initiative?.credits?.length > 0){
+      const creditVal = initiative?.credits[0].value || 0
+      const creditTon = creditVal / (usdRate||1)
+      offsetVal = creditTon>0 ? (+amountUSD / creditTon) : 0
+      offsetTxt = offsetVal.toFixed(2) + ' Tons'
+      console.log('CREDITVAL', creditVal)
+      console.log('CREDITTON', creditTon)
+      console.log('OFFSETVAL', offsetVal)
+      console.log('OFFSETTXT', offsetTxt)
     }
 
     const uriImage = initiative?.imageUri || 'ipfs:QmZWgvsGUGykGyDqjL6zjbKjtqNntYZqNzQrFa6UnyZF1n'
@@ -113,6 +128,7 @@ export default async function Mint(req: NextApiRequest, res: NextApiResponse) {
       coinIssuer: coinIssuer,
       coinValue: amountCUR,
       usdValue: amountUSD,
+      creditValue: offsetTxt,
       operation: opid
     }
     console.log('META', metadata)
