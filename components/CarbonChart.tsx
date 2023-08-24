@@ -75,7 +75,7 @@ const CarbonChart = ({
   const rst = 99 - num
   const offs = Array(num).fill(0)
   const tons = Array(rst).fill(0)
-  //console.log('Tons', num, dec, rst)
+  console.log('Tons', num, dec, rst)
   //console.log('Arrs', offs.length, tons.length)
   return (
     <>
