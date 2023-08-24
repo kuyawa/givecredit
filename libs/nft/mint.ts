@@ -11,34 +11,34 @@ interface MintResponse {
 
 export default async function mintNFT(account:string, metauri: string):Promise<MintResponse>{
   console.log('Minting...', account, metauri)
-  const server  = new StellarSdk.Server(process.env.STELLAR_RPC_URI)
-  const minter  = StellarSdk.Keypair.fromSecret(process.env.CFCE_MINTER_WALLET_SEED) // GDXMQPQAPJ2UYPTNC53ZQ756TIIGFWVDRAP2QEWK6KVBRHXE3DJMLDEG
-  const issuer  = minter.publicKey()
-  const source  = await server.loadAccount(issuer)
-  const myNFT   = new StellarSdk.Asset('GIVEXLM', issuer)
-  const phrase  = process.env.STELLAR_NETWORK=='mainnet' ? StellarSdk.Networks.PUBLIC : StellarSdk.Networks.TESTNET
-  const timeout = 7200 // one minute
-
-  var mintTx = new StellarSdk.TransactionBuilder(source, {
-    networkPassphrase: phrase,
-    fee: StellarSdk.BASE_FEE
-  })
-
-  let mintOp = StellarSdk.Operation.payment({
-    source: issuer,
-    destination: account,
-    asset: myNFT,
-    amount: '1'
-  })
-
-  let mint = mintTx
-    .addOperation(mintOp)
-    //.addMemo(StellarSdk.Memo.text(metauri))
-    .setTimeout(timeout)
-    .build()
-  
-  //console.log('Minting...')
   try {
+    const server  = new StellarSdk.Server(process.env.STELLAR_RPC_URI)
+    const minter  = StellarSdk.Keypair.fromSecret(process.env.CFCE_MINTER_WALLET_SEED) // GDXMQPQAPJ2UYPTNC53ZQ756TIIGFWVDRAP2QEWK6KVBRHXE3DJMLDEG
+    const issuer  = minter.publicKey()
+    const source  = await server.loadAccount(issuer)
+    const myNFT   = new StellarSdk.Asset('GIVEXLM', issuer)
+    const phrase  = process.env.STELLAR_NETWORK=='mainnet' ? StellarSdk.Networks.PUBLIC : StellarSdk.Networks.TESTNET
+    const timeout = 300 // five minutes
+
+    var mintTx = new StellarSdk.TransactionBuilder(source, {
+      networkPassphrase: phrase,
+      fee: StellarSdk.BASE_FEE
+    })
+
+    let mintOp = StellarSdk.Operation.payment({
+      source: issuer,
+      destination: account,
+      asset: myNFT,
+      amount: '1'
+    })
+
+    let mint = mintTx
+      .addOperation(mintOp)
+      //.addMemo(StellarSdk.Memo.text(metauri))
+      .setTimeout(timeout)
+      .build()
+    
+    //console.log('Minting...')
     mint.sign(minter)
     let minted = await server.submitTransaction(mint)
     console.log('Minted', minted)
