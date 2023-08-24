@@ -1,6 +1,7 @@
 //import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { setCookie } from 'cookies-next'
 //import Link from 'next/link'
 import Page from 'components/Page'
 import BackButton from 'components/BackButton'
@@ -78,13 +79,14 @@ async function sendPayment(name, email, organization, amount, currency, issuer, 
   if(!result) { 
     result = await wallet.connect(null)
   }
-  const source = result.account
-  console.log('SOURCE', result.account)
-  if(!result?.account){
+  const source = result?.account
+  console.log('SOURCE', source)
+  if(!source){
     $$('message', 'Error: Signature rejected by user')
     console.log('Error: Signature rejected by user')
     return
   }
+  setCookie('wallet', source)
   const memo = destinTag ? 'tag:'+destinTag : ''
   const {txid, xdr} = await PaymentXDR(source, destin, amount, currency, issuer, memo)
   console.log('txid', txid, xdr)
