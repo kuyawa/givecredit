@@ -5,6 +5,7 @@ interface TextInputProps {
   label?: string;
   className?: string;
   register: UseFormRegisterReturn;
+  onChange?: (event)=>void;
 }
 
 const TextInput = forwardRef(
@@ -13,18 +14,22 @@ const TextInput = forwardRef(
       label,
       register,
       className,
+      onChange,
       ...props
     }: TextInputProps & HTMLProps<HTMLInputElement>,
     ref
-  ) => (
-    <label className={`m-0 mt-4 ${className ?? ''}`}>
-      <span className="text-slate-300 text-sm text-left uppercase">
-        {label}
-      </span>
-      <input ref={ref} {...props} {...register} />
-    </label>
-  )
-);
+  ) => {
+    return (
+      <label className={`m-0 mt-0 ${className ?? ''}`}>
+        <span className="text-green-300 text-sm text-left uppercase">
+          {label}
+        </span>
+        <input onKeyUp={onChange} ref={ref} {...props} {...register} />
+      </label>
+    )
+  }
+)
+
 TextInput.displayName = 'TextInput';
 
 export default TextInput;

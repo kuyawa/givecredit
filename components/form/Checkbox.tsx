@@ -3,6 +3,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface CheckboxProps {
   label: string;
+  check?: boolean;
   register: UseFormRegisterReturn;
 }
 
@@ -16,14 +17,12 @@ interface CheckboxProps {
 
 const Checkbox = ({
   label,
+  check,
   register: { onChange, name, ...register },
   className,
   ...rest
 }: CheckboxProps & HTMLProps<HTMLInputElement>) => {
-  //console.log({ rest });
-  const [checked, setChecked] = useState(false);
-  // const event = useRef(null);
-
+  const [checked, setChecked] = useState(check);
   const classes = "rounded-full flex w-fit flex-row align-middle justify-start items-center text-white text-sm lineheight12 px-0 py-1 mb-0 ml-2 " + className
 
   return (

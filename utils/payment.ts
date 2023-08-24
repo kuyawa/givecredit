@@ -1,6 +1,7 @@
 import * as StellarSdk from 'stellar-sdk'
 
 export default async function PaymentXDR(source, destin, amount, currency, issuer, memo='') {
+  console.log('PAYMENT', source, destin, amount, currency, issuer, memo)
   const server = new StellarSdk.Server(process.env.NEXT_PUBLIC_STELLAR_RPC_URI)
   const account = await server.loadAccount(source)
   //const baseFee = await server.fetchBaseFee()

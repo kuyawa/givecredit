@@ -4,7 +4,7 @@ import type { IronSessionOptions } from 'iron-session';
 
 export const sessionOptions: IronSessionOptions = {
   password: process.env.IRON_SESSION_KEY as string,
-  cookieName: 'givexlm_session',
+  cookieName: 'givecredit_session',
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production'
   }

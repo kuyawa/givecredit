@@ -1,7 +1,7 @@
+import React, { PropsWithChildren } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { PropsWithChildren } from 'react'
 
 interface PageProps {
   toolbarTitle?: string;
@@ -26,22 +26,20 @@ const Page = ({
   return (
     <div>
       <Head>
-        <title>{toolbarTitle}</title>
+        <title>{toolbarTitle||'Give Credit'}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Link href="/">
         <Image
           src="/logo.png"
-          alt="Give XLM"
+          alt="Give Credit"
           className="h-20 w-auto mx-auto my-6"
           width={370}
           height={80}
           priority
         />
       </Link>
-      <main
-        className={`container mx-auto rounded-2xl px-4 lg:px-12 py-12 mb-4 ${className}`}
-      >
+      <main className={`container max-w-3xl rounded-2xl px-4 lg:px-12 py-12  w-11/12 md:w-1/2 2xl:w-1/3 md:mt-20 bg-green-900 shadow-3xl backdrop-blur mx-auto  ${className}`} >
         {children}
       </main>
       <div

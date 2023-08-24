@@ -99,7 +99,7 @@
         <mj-text align="right">Powered By:</mj-text>
       </mj-column>
       <mj-column vertical-align="middle">
-        <mj-image width="100px" src="https://givecredit.cfce.io/logo.png" align="left" href="https://givexlm.cfce.io" alt="Give XLM Logo"/>
+        <mj-image width="100px" src="https://givecredit.cfce.io/logo.png" align="left" href="https://givecredit.cfce.io" alt="Give Credit Logo"/>
       </mj-column>
     </mj-section>
 </mjml>

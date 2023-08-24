@@ -22,10 +22,10 @@ const UNKNOWN_TYPE = { message:"Unknown type", code:7 }
 const USER_DISCONNECTED = { message:"User disconnected", code:6000 }
 
 const METADATA = {
-  name: 'Give-XLM',
+  name: 'Give-Credit',
   description: 'Donations in XLM',
-  url: 'https://givexlm.cfce.io',
-  icons: ['https://givexlm.cfce.io/IconV3.png']
+  url: 'https://givecredit.cfce.io',
+  icons: ['https://givecredit.cfce.io/logo.png']
 };
 
 //const CHAIN_ID = process.env.NEXT_PUBLIC_STELLAR_NETWORK=='mainnet' ? 'stellar:pubnet' : 'stellar:testnet'

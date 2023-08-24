@@ -29,6 +29,18 @@ module.exports = {
         hostname: 'give.staging.cfce.io',
         port: '',
         pathname: '/media/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'ipfs.filebase.io',
+        port: '',
+        pathname: '/ipfs/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'ipfs.io',
+        port: '',
+        pathname: '/ipfs/**'
       }
     ],
   },
