@@ -19,4 +19,5 @@ export interface Organization {
   initiative: any[];
   wallets?: any[];
   walletIds: string[];
+  inactive: boolean;
 }

@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router'
+//import { useRouter } from 'next/router'
 //import { useSelector } from 'react-redux'
 import Image from 'next/image'
 import Link from 'next/link'
 import Page from 'components/Page'
 import Card from 'components/Card'
-import Divider from 'components/Divider'
+//import Divider from 'components/Divider'
 import BackButton from 'components/BackButton'
 //import Spinner from 'components/Spinner'
 //import { getNFTArray } from 'redux/nft/selectors'
@@ -32,13 +32,14 @@ export async function getServerSideProps(context) {
 
 export default function ViewNFTs(props) {
   const { wallet, NFTs } = props;
-  const router = useRouter();
+  //const router = useRouter();
   //const walletID = Array.isArray(wallet) ? wallet[0] : wallet;
   //const NFTs = useSelector((state) => getNFTArray(state, walletID));
   //const { isLoading } = useFetchNFTs(walletID);
   const gateway = 'https://ipfs.io/ipfs/'
-  const isLoading = false;
+  //const isLoading = false;
   //console.log('select', { NFTs });
+  const defaultImage = '/hands.jpg'
 
   if (!wallet) {
     return (
@@ -71,7 +72,6 @@ export default function ViewNFTs(props) {
   return (
     <Page>
       <h1 className="text-center text-4xl mb-6">Your NFTs</h1>
-      {isLoading && <Spinner />}
       {NFTs.map((item) => {
         //let nftImage = defaultImage
         let nftImage = item.initiative?.defaultAsset || item.organization?.image || defaultImage

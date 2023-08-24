@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+//import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link';
 import Image from 'next/image';
 import Page from 'components/Page'
-import Card from 'components/Card'
+//import Card from 'components/Card'
 import BackButton from 'components/BackButton'
 import DonationTierRow from 'components/DonationTierRow'
 import CarbonChart from 'components/CarbonChart'

@@ -6,39 +6,39 @@ interface ChartType {
 const style = {
   label: {
     color: '#fff',
-    textAlign: 'center'
+    'text-align': 'center'
   },
   value: {
-    fontWeight: 'bold',
-    fontSize: 'large'
+    'font-weight': '400',
+    'font-size': '1'
   },
   chart: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(10, 1fr)',
-    gridTemplateRows: 'repeat(5, 1fr)',
-    gridColumnGap: '0px',
-    gridRowGap: '0px',
+    'grid-template-columns': 'repeat(10, 1fr)',
+    'grid-template-rows': 'repeat(5, 1fr)',
+    'grid-column-gap': '0px',
+    'grid-row-gap': '0px',
     width: '500px',
     margin: '0 auto'
   },
   ton: {
-    boxSizing: 'border-box',
+    'box-sizing': 'border-box',
     display: 'inline-block',
     width: '40px',
     height: '20px',
     margin: '2px',
     border: '1px solid #666',
-    borderRadius: '6px',
+    'border-radius': '6px',
   },
   off: {
-    boxSizing: 'border-box',
+    'box-sizing': 'border-box',
     display: 'inline-block',
     width: '40px',
     height: '20px',
     margin: '2px',
     border: '1px solid #666',
-    borderRadius: '6px',
-    backgroundColor: 'green'
+    'border-radius': '6px',
+    'background-color': 'green'
   },
   p10: { background: 'linear-gradient(to right, green 0%, green 10%, transparent 10%, transparent 100%)' },
   p20: { background: 'linear-gradient(to right, green 0%, green 20%, transparent 20%, transparent 100%)' },
@@ -55,8 +55,8 @@ const CarbonChart = ({
   title,
   value
 }: ChartType) => {
-  const ton = style.ton
-  const off = style.off
+  //const ton = style.ton
+  //const off = style.off
   const pct = {
     10: { ...style.ton, ...style.p10 },
     20: { ...style.ton, ...style.p20 },
@@ -68,21 +68,22 @@ const CarbonChart = ({
     80: { ...style.ton, ...style.p80 },
     90: { ...style.ton, ...style.p90 }
   }
-  const int = parseInt(value)
-  const dec = (value%1).toFixed(1)*100
+  const num = Math.trunc(value*1)
+  const mod = num % 1
+  const dec = parseInt(mod.toFixed(1))*100
   const prt = pct[dec]
-  const rst = 99 - int
-  const offs = Array(int).fill(0)
+  const rst = 99 - num
+  const offs = Array(num).fill(0)
   const tons = Array(rst).fill(0)
-  //console.log('Tons', int, dec, rst)
+  //console.log('Tons', num, dec, rst)
   //console.log('Arrs', offs.length, tons.length)
   return (
     <>
-      <div style={style.label}>{title} <b style={style.value}>{value}</b> tons</div>
+      <div style={style.label}>{title} <span>{value}</span> tons</div>
       <div style={style.chart}>
-        {offs.map((i) => { return (<div style={style.off} key={Math.random()}></div>) } )}
+        {offs.map(() => { return (<div style={style.off} key={Math.random()}></div>) } )}
         {dec>0 ? (<div style={prt}></div>) : <></> }
-        {tons.map((i) => { return (<div style={style.ton} key={Math.random()}></div>) } )}
+        {tons.map(() => { return (<div style={style.ton} key={Math.random()}></div>) } )}
       </div>
     </>
   );

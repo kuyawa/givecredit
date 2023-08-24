@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Card from './Card'
 import Icon from './Icon'
 import TextInput from './form/TextInput'
-import getRates from '/utils/rates'
+//import getRates from '/utils/rates'
 
 interface DonationTierRowTypes {
   title?: string;
@@ -13,7 +13,7 @@ interface DonationTierRowTypes {
   value: number;
   credit?: number;
   rate?: number;
-  onClick: (string) => void;
+  onClick: (num1, num2) => void;
   currency?: string;
   disabled?: boolean;
 }
