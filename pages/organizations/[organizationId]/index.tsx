@@ -33,7 +33,7 @@ function Initiatives(organization, initiatives, wallet, rate) {
     <>
       {initiatives.map((initiative) => {
         if(initiative.inactive){ return null }
-        console.log('initcredit', initiative.credits)
+        //console.log('initcredit', initiative.credits)
         const credit = initiative.credits?.length>0 ? initiative.credits[0].value : 0
         const destinationTag = initiative.tag || 0
         const impactUrl = '/impact/'+initiative.id

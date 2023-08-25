@@ -36,8 +36,8 @@ const DonationTierRow = ({
   //const rate = 0.1285 // xlm/usd
   //const creditPerTon = 20 // usd/ton
   const amountPerTon = credit / rate 
-  console.log('USD/TON', credit)
-  console.log('XLM/TON', amountPerTon)
+  //console.log('USD/TON', credit)
+  //console.log('XLM/TON', amountPerTon)
   const offsetVal = amountPerTon>0 ? (value / amountPerTon).toFixed(2) : 0
   const [offset,setOffset] = useState(offsetVal)
   function updateOffset(event){

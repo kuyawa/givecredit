@@ -55,8 +55,6 @@ const CarbonChart = ({
   title,
   value
 }: ChartType) => {
-  //const ton = style.ton
-  //const off = style.off
   const pct = {
     10: { ...style.ton, ...style.p10 },
     20: { ...style.ton, ...style.p20 },
@@ -68,14 +66,16 @@ const CarbonChart = ({
     80: { ...style.ton, ...style.p80 },
     90: { ...style.ton, ...style.p90 }
   }
-  const num = Math.trunc(value*1)
+  const num = value
+  const int = Math.trunc(num)
   const mod = num % 1
-  const dec = parseInt(mod.toFixed(1))*100
+  const fix = mod.toFixed(1)
+  const dec = Number(fix) * 100
   const prt = pct[dec]
-  const rst = 99 - num
-  const offs = Array(num).fill(0)
+  const rst = 99 - int
+  const offs = Array(int).fill(0)
   const tons = Array(rst).fill(0)
-  console.log('Tons', num, dec, rst)
+  //console.log('Tons', num, mod, dec, rst)
   //console.log('Arrs', offs.length, tons.length)
   return (
     <>
