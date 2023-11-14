@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Page from 'components/Page'
-import Card from 'components/Card'
-import BackButton from 'components/BackButton'
+import Page from 'components/page'
+import Card from 'components/card'
+import BackButton from 'components/backbutton'
 import { getNFTsByAccount } from 'utils/registry'
 import { getCookie } from 'cookies-next'
 

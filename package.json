@@ -16,6 +16,7 @@
     "@aws-sdk/client-pinpoint-email": "^3.95.0",
     "@aws-sdk/client-s3": "^3.216.0",
     "@lighthouse-web3/sdk": "^0.1.12",
+    "@stellar/freighter-api": "^1.7.1",
     "@types/react-redux": "^7.1.24",
     "@types/redux": "^3.6.0",
     "@walletconnect/qrcode-modal": "^1.8.0",

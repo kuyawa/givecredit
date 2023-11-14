@@ -47,7 +47,7 @@ export default async function mintNFT(account:string, metauri: string):Promise<M
       // Clone the result and get the paging_token from there
       const cloned = JSON.parse(JSON.stringify(minted))
       const opid = (BigInt(cloned?.paging_token || '0') + BigInt(1)).toString() // eslint-disable-line
-      console.log('Txid', opid)
+      console.log('OPid', opid)
       return {success:true, id:opid}
     } else {
       //console.log('Error', minted.response?.data?.extras?.result_codes)

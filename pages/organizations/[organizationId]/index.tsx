@@ -2,12 +2,12 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link';
 import Image from 'next/image';
-import Page from 'components/Page'
-//import Card from 'components/Card'
-import BackButton from 'components/BackButton'
-import DonationTierRow from 'components/DonationTierRow'
-import CarbonChart from 'components/CarbonChart'
-import TextRow from 'components/TextRow'
+import Page from 'components/page'
+//import Card from 'components/card'
+import BackButton from 'components/backbutton'
+import DonationTierRow from 'components/donationtierrow'
+import CarbonChart from 'components/carbonchart'
+import TextRow from 'components/textrow'
 import { getOrganizationById } from 'utils/registry'
 import Session from 'utils/session'
 import getRates from 'utils/rates'
@@ -50,7 +50,7 @@ function Initiatives(organization, initiatives, wallet, rate) {
                   className="p-0"
                 />
                 <p>{initiative.description}</p>
-                <p><Link className="text-slate-400" href={impactUrl} target="_blank">See impact storyline &raquo;</Link></p>
+                <p><Link className="text-slate-400" href={impactUrl}>See impact storyline &raquo;</Link></p>
               </div>
             </div>
             {/*
