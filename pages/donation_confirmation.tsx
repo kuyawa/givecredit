@@ -6,18 +6,7 @@ import Page from 'components/page'
 import HomeButton from 'components/homebutton'
 import Card from 'components/card'
 
-/*
-export async function getServerSideProps({query}) {
-  console.log('QUERY', query)
-  const { ok, chain, txid, nft, nftid, urinft, urimeta } = query
-  return {
-    props: { ok, chain, txid, nft, nftid, urinft, urimeta }
-  }
-}
-*/
-
 export default function PaymentConfirmation() {
-  //console.log('PROPS', props)
   const {
     query: { ok, chain, txid, nft, nftid, urinft, urimeta },
     ...router
