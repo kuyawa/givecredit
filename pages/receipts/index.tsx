@@ -4,19 +4,19 @@ import Card from 'components/card'
 import Divider from 'components/divider'
 import TextRow from 'components/textrow'
 import BackButton from 'components/backbutton'
-import { getNFTsByAccount } from 'utils/registry'
+import { getNFTsByWallet } from 'utils/registry'
 import { getCookie } from 'cookies-next'
 //import Session from 'utils/session'
 
 export async function getServerSideProps({ req, res, query }){
   let { wallet } = query
   if (!wallet) {
-    wallet = getCookie('wallet', { req, res }) ?? null; // check cookies just in case
+    wallet = getCookie('wallet', { req, res }) ?? null // check cookies just in case
   }
   console.log('Wallet:', wallet)
   //const session = Session(req)
-  const NFTs = await getNFTsByAccount(wallet);
-  NFTs.sort((n1, n2) => (n1.created < n2.created ? 1 : -1));
+  const NFTs = await getNFTsByWallet(wallet) || []
+  NFTs.sort((n1, n2) => (n1.created < n2.created ? 1 : -1))
   //console.log('Session:', session)
   return { props: {wallet, NFTs} }
 }
@@ -35,7 +35,7 @@ export default function Receipts(props) {
     );
   }
 
-  if (!NFTs.length) {
+  if (!NFTs?.length) {
     return (
       <Page>
         <BackButton />
