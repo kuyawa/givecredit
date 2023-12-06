@@ -3,7 +3,6 @@ import Page  from 'components/page'
 import Card  from 'components/card'
 import Tile  from 'components/tile'
 import Image from 'next/image'
-//import Button from '../components/button'
 
 export default function Home() {
   return (
@@ -45,7 +44,6 @@ export default function Home() {
           <div className="text-center ">
             <p className="text-xl">We use Freighter wallet for Stellar Network</p>
             <li className="list-none">
-              {/*<Link href={'https://lobstr.co'} target="_blank">Lobstr</Link> • <Link href={'https://xbull.app'} target="_blank">xBull</Link> • <Link href={'https://trustwallet.com'} target="_blank">TrustWallet</Link>*/}
               Download <Link href={'https://www.freighter.app/'} target="_blank">Freighter</Link> wallet
             </li>
             <p className="text-sm text-slate-400 mt-4">You will need to have XLM in a wallet that supports Stellar Network, such as Freighter. Freighter is a secure, non-custodial, end-to-end encrypted, blockchain wallet. You can learn more in their website.</p>
